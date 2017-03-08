@@ -8,25 +8,40 @@
 class Camera
 {
 	// Camera Parameters
-	// Camera position
+	// Camera Position (eyepoint)
 	// VRP (View Reference Point)
-	Vect _eye[3];
-	_at[3], up[3];
-	float _fovy;
-	float _near, _far;
-	int _ResX, _ResY;
+	Vect _vrp;
+	// Camera Direction
+	// VPN (View Plane Normal)
+	Vect _vpn;
+	// Camera Rotation
+	// VUV (View Up Vector)
+	Vect _vuv;
+	// Camera Angle
+	// (aka.: How wide you can see?)
+	// FOV (Field of View)
+	double _fov;
 
-	float _w, _h;
-	double _xe[3], _ye[3], _ze[3];
+
+
+	// Window settings
+	// not to be used in here
+	/*
+		float _fovy;
+		float _near, _far;
+		int _ResX, _ResY;
+		float _w, _h;
+		double _xe[3], _ye[3], _ze[3];
+	*/
+
 public:
-	Camera(double eyex, double eyey, double eyez,
-			double atx, double aty, double atz,
-			double upx,double upy, double upz,
-			float fovy, float near, float far,
-			int resx, int rexy, float w, float h,
-			double xex, double xey, double xez,
-			double yex, double yey, double yez,
-			double zex, double zey, double zez);
+	// Default Camera
+	Camera();
+	// Camera without the FOV (angle)
+	Camera(Vect vrp, Vect vpn, Vect vuv);
+	// Camera with the FOV (angle)
+	Camera(Vect vrp, Vect vpn, Vect vuv, double angle);
+	// destructor
 	~Camera();
 };
 

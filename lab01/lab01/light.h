@@ -1,7 +1,6 @@
 #pragma once
 class Light
 {
-	//test
 	double _position[3];
 	double _rgb[3];
 
