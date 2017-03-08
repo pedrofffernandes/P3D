@@ -17,6 +17,9 @@ class Camera
 	// Camera Rotation
 	// VUV (View Up Vector)
 	Vect* _vuv;
+
+	int _resX;
+	int _resY;
 	// Camera Angle
 	// (aka.: How wide you can see?)
 	// FOV (Field of View)
@@ -40,7 +43,7 @@ public:
 	// Camera without the FOV (angle)
 	Camera(Vect* vrp, Vect* vpn, Vect* vuv);
 	// Camera with the FOV (angle)
-	Camera(Vect* vrp, Vect* vpn, Vect* vuv, double fov);
+	Camera(Vect* vrp, Vect* vpn, Vect* vuv, int resX, int resY, double fov);
 	// destructor
 	~Camera();
 };
