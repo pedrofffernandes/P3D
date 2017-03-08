@@ -157,6 +157,7 @@
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="sphere.cpp" />
+    <ClCompile Include="Vect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Ray.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="sphere.h" />
+    <ClInclude Include="Vect.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
