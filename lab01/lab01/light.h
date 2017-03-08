@@ -1,11 +1,13 @@
 #pragma once
+#include "Vect.h"
+
 class Light
 {
-	double _position[3];
-	double _rgb[3];
+	Vect _position;
+	Vect _rgb;
 
 public:
-	Light(double x, double y, double z, double r, double g, double b);
+	Light(Vect position, Vect rgb,);
 	~Light();
 };
 

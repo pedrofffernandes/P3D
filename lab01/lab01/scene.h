@@ -14,8 +14,8 @@
 #include "Sphere.h"
 
 class Scene {
-	std::list<light*> _lights;
-	std::list<obj*> _objects;
+	std::list<Light*> _lights;
+	std::list<Obj*> _objects;
 
 	Camera * _camera;
 
@@ -23,10 +23,10 @@ public:
 	Scene();
 	Camera * getCamera();
 	bool load_nff(std::string fileName);
-	std::list<light*> getLights();
-	std::list<obj*> getObjects();
-	void addObject(obj * object);
-	void addLight(light * light);
+	std::list<Light*> getLights();
+	std::list<Obj*> getObjects();
+	void addObject(Obj * object);
+	void addLight(Light * light);
 
 
 

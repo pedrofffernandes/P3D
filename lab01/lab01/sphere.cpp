@@ -2,11 +2,9 @@
 
 
 
-Sphere::Sphere(double x, double y, double z, double r, Material * mat) : Obj(mat)
+Sphere::Sphere(Vect* position, double r, Material * mat) : Obj(mat)
 {
-	_position [0] = x;
-	_position [1] = y;
-	_position [2] = z;
+	_position = position;
 	_radius = r;
 }
 
