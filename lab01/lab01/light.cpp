@@ -12,3 +12,7 @@ Light::Light(Vect* position, Vect* rgb)
 Light::~Light()
 {
 }
+
+void Light::setColor(Vect * rgb) {
+	_rgb = rgb;
+}

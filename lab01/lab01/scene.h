@@ -19,6 +19,7 @@ class Scene {
 	std::list<Obj*> _objects;
 
 	Camera * _camera;
+	Vect * _background;
 
 public:
 	Scene();
@@ -34,6 +35,10 @@ public:
 
 	bool Scene::parseFile(FILE *file, int width, int height);
 	void Scene::parseViewpoint(FILE *file, int width, int height);
+	void Scene::parseLight(FILE *file);
+	void Scene::parseBackground(FILE * file);
+	void Scene::parseSphere(FILE * file);
+	void Scene::parsePlane(FILE * file);
 
 
 

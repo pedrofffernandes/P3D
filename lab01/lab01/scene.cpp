@@ -38,7 +38,7 @@ typedef float Vec4f[4];
 static int gDetailLevel = 0;
 
 /* Current material. */
-Material mat;
+Material * mat;
 
 /* Scene */
 
@@ -93,15 +93,15 @@ bool Scene::parseFile(FILE *file, int width, int height) {
 			continue;
 
 		case 'v':
-			parseViewpoint(file, width, height);		//TODO
+			parseViewpoint(file, width, height);
 			break;
 			/* Light sources. */
 		case 'l':
-			//parseLight(f, scene);					//TODO
+			parseLight(file);
 			break;
 			/* Background colour. */
 		case 'b':
-			//parseBackground(f, scene);			//TODO
+			parseBackground(file);			
 			break;
 			/* Fill material. */
 		case 'f':
@@ -113,7 +113,7 @@ bool Scene::parseFile(FILE *file, int width, int height) {
 			break;
 			/* Sphere. */
 		case 's':
-			//parseSphere(f, scene);				//TODO
+			parseSphere(file);				
 			break;
 			/* Polygon or patch. */
 		case 'p':
@@ -126,7 +126,7 @@ bool Scene::parseFile(FILE *file, int width, int height) {
 					//parsePolyPatch(f, scene);		//TODO
 					break;
 				case 'l':
-					//parsePlane(f, scene);			//TODO
+					parsePlane(f);			//TODO
 					break;
 					/* Unknown. */
 				default:
@@ -146,6 +146,153 @@ bool Scene::parseFile(FILE *file, int width, int height) {
 		return true;
 	}
 }
+
+void Scene::parseViewpoint(FILE *file, int width, int height)
+{
+	/* Initialize variables here to avoid crossing them with gotos. */
+	double eyex, eyey, eyez;
+	double atx, aty, atz;
+	double upx, upy, upz;
+	double fovAngle;
+	double hither;
+
+
+	if (fscanf(file, " from %f %f %f", &eyex, &eyey, &eyez) != 3)
+	{
+		goto fmterr;
+	}
+	;
+	if (fscanf(file, " at %f %f %f", &atx, &aty, &atz) != 3)
+	{
+		goto fmterr;
+	}
+
+	if (fscanf(file, " up %f %f %f", &upx, &upy, &upz) != 3)
+	{
+		goto fmterr;
+	}
+
+	if (fscanf(file, " angle %f", &fovAngle) != 1)
+	{
+		goto fmterr;
+	}
+
+	if (fscanf(file, " hither %f", &hither) != 1)
+	{
+		goto fmterr;
+	}
+
+	if (hither < 0.0001)
+	{
+		hither = 1.0f;
+	}
+
+	int resX;
+	int resY;
+	if (fscanf(file, " resolution %d %d", &resX, &resY) != 2)
+	{
+		goto fmterr;
+	}
+
+	/* Convert the fovAngle, which is in degrees, to radians. */
+	fovAngle = fovAngle / 180.0 * PI;
+
+	/* Apply resolution overrides. */
+	if (width > 0)
+	{
+		resX = width;
+	}
+
+	if (height > 0)
+	{
+		resY = height;
+	}
+	Vect * eye = new Vect(eyex, eyey, eyez);
+	Vect * at = new Vect(atx, aty, atz);
+	Vect * up = new Vect(upx, upy, upz);
+
+	this->_camera = new Camera(eye, at, up, resX, resY, fovAngle);
+
+	return;
+
+fmterr: printf("Parser view syntax error");
+	exit(1);
+}
+
+void Scene::parseLight(FILE *file)
+{
+	double lx, ly, lz;
+	double lr, lg, lb;
+
+	if (fscanf(file, "%f %f %f ", &lx, &ly, &lz) != 3)
+	{
+		printf("Light source position syntax error");
+		exit(1);
+	}
+
+	/* Read optional color of light. */
+	int num = fscanf(file, "%f %f %f ", &lr, &lg, &lb);
+	if (num == 0)
+	{
+		Vect * position = new Vect(lx, ly, lz);
+		Vect * color = new Vect(1.0, 1.0, 1.0);
+		Light * light = new Light(position, color);
+		this->_lights.push_back(light);
+		return;
+
+	}
+	else if (num != 3)
+	{
+		printf("Light source color syntax error");
+		exit(1);
+	}
+
+	Vect * position = new Vect(lx, ly, lz);
+	Vect * color = new Vect(1.0, 1.0, 1.0);
+	Light * light = new Light(position, color);
+	this->_lights.push_back(light);
+}
+
+void Scene::parseBackground(FILE * file)
+{
+	double r, g, b;
+	if (fscanf(file, "%f %f %f", &r, &g, &b) != 3)
+	{
+		printf("background color syntax error");
+		exit(1);
+	}
+
+	Vect * color = new Vect(r, g, b);
+
+	this->_background = color;
+}
+
+void Scene::parseSphere(FILE *file)
+{
+	double radius;
+	double x, y, z;
+
+	if (fscanf(file, "%f %f %f %f", &x, &y, &z, &radius)
+		!= 4)
+	{
+		printf("sphere syntax error");
+		exit(1);
+	}
+	Vect * position = new Vect(x, y, z);
+	Sphere * sphere = new Sphere(position, radius, mat);
+
+	this->addObject(sphere);
+}
+
+void Scene::parsePlane(FILE * file) {
+
+}
+
+
+
+
+
+
 
 
 
@@ -224,10 +371,10 @@ void Scene::parseComment(FILE *f) {
 *
 * @param fp The file handle of the input file.
 * @param scene The Scene object to populate with the viewpoint.
-*/
+*//*
 void Scene::parseViewpoint(FILE *file, int width, int height)
 {
-	/* Initialize variables here to avoid crossing them with gotos. */
+	/* Initialize variables here to avoid crossing them with gotos. 
 	double eyex, eyey, eyez;
 	double atx, aty, atz;
 	double upx, upy, upz;
@@ -272,10 +419,10 @@ void Scene::parseViewpoint(FILE *file, int width, int height)
 		goto fmterr;
 	}
 
-	/* Convert the fovAngle, which is in degrees, to radians. */
+	/* Convert the fovAngle, which is in degrees, to radians. 
 	fovAngle = fovAngle / 180.0 * PI;
 
-	/* Apply resolution overrides. */
+	/* Apply resolution overrides. 
 	if (width > 0)
 	{
 		resX = width;
@@ -295,7 +442,7 @@ void Scene::parseViewpoint(FILE *file, int width, int height)
 
 fmterr: printf("Parser view syntax error");
 	exit(1);
-}
+}*/
 
 /**
 * Parse a positional light definition. A light is defined by XYZ
@@ -319,56 +466,7 @@ fmterr: printf("Parser view syntax error");
 * @param fp The file to read the light's details from.
 * @param scene The Scene object to populate with this light's details.
 */
-static void
-parseLight(FILE *fp, Scene& scene)
-{
-	int is_animated = getc(fp);
-	if (is_animated != 'a')
-	{
-		ungetc(is_animated, fp);
-		is_animated = 0;
-	}
 
-	/* If it's an animated light, read its name. */
-	char name[100];
-	strcpy(name, "");
-	if (is_animated)
-	{
-		fscanf(fp, "%s", name);
-	}
-
-	Light l;
-
-	if (fscanf(fp, "%f %f %f ", &l.pos.x, &l.pos.y, &l.pos.z) != 3)
-	{
-		printf("Light source position syntax error");
-		exit(1);
-	}
-
-	/* Read optional color of light. */
-	int num = fscanf(fp, "%f %f %f ", &l.colour.r, &l.colour.g, &l.colour.b);
-	if (num == 0)
-	{
-		/* I have no idea what V4SET4 is, but I'm guessing it sets 4
-		* values of a length-4 vector. :P I commented it out and added
-		* alternative code that should do this since VSET4 is only used
-		* once.
-		*
-		* This is the default light colour. */
-		//V4SET4(col,1.0f,1.0f,1.0f,1.0f);
-		for (int j = 0; j < 3; j++)
-		{
-			l.colour.set(j, 1.0f);
-		}
-	}
-	else if (num != 3)
-	{
-		printf("Light source color syntax error");
-		exit(1);
-	}
-
-	scene.lights.push_back(l);
-}
 
 /**
 * Parses the AFF background colour. A colour is simply RGB with values
@@ -385,20 +483,6 @@ parseLight(FILE *fp, Scene& scene)
 * @param fp The file to parse the background colour from.
 * @param scene The scene for which to populate the background colour.
 */
-static void
-parseBackground(FILE *fp, Scene& scene)
-{
-	Vec3f bgcolor;
-	if (fscanf(fp, "%f %f %f", &bgcolor[X], &bgcolor[Y], &bgcolor[Z]) != 3)
-	{
-		printf("background color syntax error");
-		exit(1);
-	}
-
-	scene.background.r = bgcolor[X];
-	scene.background.g = bgcolor[Y];
-	scene.background.b = bgcolor[Z];
-}
 
 /**
 * Parse AFF fill color and shading parameters.
@@ -539,26 +623,6 @@ parseCone(FILE *fp, Scene& scene)
 * @param fp The file to parse the sphere from.
 * @param scene The Scene object to populate with the sphere.
 */
-static void
-parseSphere(FILE *fp)
-{
-	float radius;
-	Vec3f center;
-
-	if (fscanf(fp, "%f %f %f %f", &center[X], &center[Y], &center[Z], &radius)
-		!= 4)
-	{
-		printf("sphere syntax error");
-		exit(1);
-	}
-
-	vec3 centre(center[X], center[Y], center[Z]);
-
-	Sphere* sphere = new Sphere(centre, radius);
-	sphere->mat = mat;
-
-	this.addObject(sphere);
-}
 
 /**
 * Parse an AFF polygon. A polygon is defined by a set of vertices. With
