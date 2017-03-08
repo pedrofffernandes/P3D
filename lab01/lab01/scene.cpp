@@ -46,6 +46,36 @@ Scene::Scene() {}
 
 Scene::~Scene() {}
 
+Camera* Scene::getCamera()
+{
+	return _camera;
+}
+
+bool Scene::load_nff(std::string fileName)
+{
+	return false;
+}
+
+std::list<light*> Scene::getLights()
+{
+	return _lights;
+}
+
+std::list<obj*> Scene::getObjects()
+{
+	return _objects;
+}
+
+void Scene::addObject(obj * object)
+{
+	_objects.push_back(object);
+}
+
+void Scene::addLight(light * light)
+{
+	_lights.push_back(light);
+}
+
 /**
 * Parses an AFF comment. As soon as a "#" (or "%") character is
 * detected, the rest of the line is considered a comment.
@@ -425,7 +455,7 @@ parseCone(FILE *fp, Scene& scene)
 * @param scene The Scene object to populate with the sphere.
 */
 static void
-parseSphere(FILE *fp, Scene& scene)
+parseSphere(FILE *fp)
 {
 	float radius;
 	Vec3f center;
@@ -442,7 +472,7 @@ parseSphere(FILE *fp, Scene& scene)
 	Sphere* sphere = new Sphere(centre, radius);
 	sphere->mat = mat;
 
-	scene.addObject(sphere);
+	this.addObject(sphere);
 }
 
 /**
@@ -1658,3 +1688,5 @@ viParseFile(FILE *f, Scene& scene, int width, int height)
 	}
 	return true;
 }
+
+

@@ -1,5 +1,6 @@
 #pragma once
-#include <string.h>
+#include <string>
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -13,10 +14,20 @@
 #include "sphere.h"
 
 class Scene {
-	std::list<light> lights;
-	std::list<obj> objects;
+	std::list<light*> _lights;
+	std::list<obj*> _objects;
 
-	camara camera;
+	Camera * _camera;
+
 public:
+	Scene();
+	Camera * getCamera();
+	bool load_nff(std::string fileName);
+	std::list<light*> getLights();
+	std::list<obj*> getObjects();
+	void addObject(obj * object);
+	void addLight(light * light);
+
+
 
 };
