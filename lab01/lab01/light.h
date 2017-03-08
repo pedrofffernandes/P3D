@@ -3,11 +3,11 @@
 
 class Light
 {
-	Vect _position;
-	Vect _rgb;
+	Vect* _position;
+	Vect* _rgb;
 
 public:
-	Light(Vect position, Vect rgb,);
+	Light(Vect* position, Vect* rgb);
 	~Light();
 };
 
