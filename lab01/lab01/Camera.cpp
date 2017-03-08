@@ -34,6 +34,6 @@ Camera::Camera(double eyex, double eyey, double eyez,
 }
 
 
-camara::~camara()
+Camera::~Camera()
 {
 }
