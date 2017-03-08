@@ -26,7 +26,11 @@ public:
 	std::list<Light*> getLights();
 	std::list<Obj*> getObjects();
 	void addObject(Obj * object);
+	std::list<Obj*> * getObjetc();
 	void addLight(Light * light);
+	std::list<Light*> getLights();
+
+	bool Scene::ParseFile(FILE *file, int width, int height)
 
 
 

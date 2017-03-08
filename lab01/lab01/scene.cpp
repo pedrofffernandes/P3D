@@ -38,7 +38,7 @@ typedef float Vec4f[4];
 static int gDetailLevel = 0;
 
 /* Current material. */
-material mat;
+Material mat;
 
 /* Scene */
 
@@ -56,25 +56,105 @@ bool Scene::load_nff(std::string fileName)
 	return false;
 }
 
-std::list<light*> Scene::getLights()
+std::list<Light*> Scene::getLights()
 {
 	return _lights;
 }
 
-std::list<obj*> Scene::getObjects()
+std::list<Obj*> Scene::getObjects()
 {
 	return _objects;
 }
 
-void Scene::addObject(obj * object)
+void Scene::addObject(Obj * object)
 {
 	_objects.push_back(object);
 }
 
-void Scene::addLight(light * light)
+void Scene::addLight(Light * light)
 {
 	_lights.push_back(light);
 }
+
+bool Scene::ParseFile(FILE *file, int width, int height)
+{
+	int ch;
+
+	while ((ch = getc(file)) != EOF)
+	{
+		switch (ch)
+		{
+			/* White space. */
+		case ' ':
+		case '\t':
+		case '\n':
+		case '\f':
+		case '\r':
+			continue;
+
+		case 'v':
+			//parseViewpoint(f, width, height);		//TODO
+			break;
+			/* Light sources. */
+		case 'l':
+			//parseLight(f, scene);					//TODO
+			break;
+			/* Background colour. */
+		case 'b':
+			//parseBackground(f, scene);			//TODO
+			break;
+			/* Fill material. */
+		case 'f':
+			//parseFill(f);							//TODO
+			break;
+			/* Cylinder or cone. */
+		case 'c':
+			//parseCone(f, scene);					//TODO
+			break;
+			/* Sphere. */
+		case 's':
+			//parseSphere(f, scene);				//TODO
+			break;
+			/* Polygon or patch. */
+		case 'p':
+		{
+			while ((ch = getc(file)) != EOF)
+			{
+				switch (ch)
+				{
+				case 'p':
+					//parsePolyPatch(f, scene);		//TODO
+					break;
+				case 'l':
+					//parsePlane(f, scene);			//TODO
+					break;
+					/* Unknown. */
+				default:
+					printf("unknown NFF primitive code: %c\n", ch);
+					exit(1);
+			break;
+		}
+
+			/* Unknown. */
+		default:
+			printf("unknown NFF primitive code: %c\n", ch);
+			exit(1);
+
+		}
+	}
+	return true;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /**
 * Parses an AFF comment. As soon as a "#" (or "%") character is
