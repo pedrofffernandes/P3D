@@ -1,8 +1,8 @@
-#include "camara.h"
+#include "Camera.h"
 
 
 
-camara::camara(double eyex, double eyey, double eyez,
+Camera::Camera(double eyex, double eyey, double eyez,
 	double atx, double aty, double atz,
 	double upx, double upy, double upz,
 	float fovy, float near, float far,
@@ -11,12 +11,12 @@ camara::camara(double eyex, double eyey, double eyez,
 	double yex, double yey, double yez,
 	double zex, double zey, double zez)
 {
-	_eye[3]
-	_eye[3]
-	_eye[3]
-	_at[3]
-		_at[3]
-		_at[3]
+	_eye[0] = eyex;
+	_eye[1] = eyex;
+	_eye[2] = eyex;
+	_at[0] = atx;
+	_at[1] = atx;
+	_at[2] = atx;
 		up[3];
 	up[3];
 	up[3];

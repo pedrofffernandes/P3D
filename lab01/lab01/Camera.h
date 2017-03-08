@@ -1,5 +1,5 @@
 #pragma once
-class camara
+class Camera
 {
 	double _eye[3], _at[3], up[3];
 	float _fovy;
@@ -9,7 +9,7 @@ class camara
 	float _w, _h;
 	double _xe[3], _ye[3], _ze[3];
 public:
-	camara(double eyex, double eyey, double eyez,
+	Camera(double eyex, double eyey, double eyez,
 			double atx, double aty, double atz,
 			double upx,double upy, double upz,
 			float fovy, float near, float far,
@@ -17,6 +17,6 @@ public:
 			double xex, double xey, double xez,
 			double yex, double yey, double yez,
 			double zex, double zey, double zez);
-	~camara();
+	~Camera();
 };
 
