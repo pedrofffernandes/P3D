@@ -8,17 +8,18 @@ Camera::Camera()
 	_vpn = new Vect(1, 0, 0);
 	_vuv = new Vect(1, 1, 0);
 }
-Camera::Camera(Vect vrp, Vect vpn, Vect vuv)
+Camera::Camera(Vect* vrp, Vect* vpn, Vect* vuv)
 {
 	_vrp = vrp;
-	_vpn = new Vect(1, 0, 0);
-	_vuv = new Vect(1, 1, 0);
+	_vpn = vpn;
+	_vuv = vuv;
 }
-Camera::Camera(Vect vrp, Vect vpn, Vect vuv, double angle)
+Camera::Camera(Vect* vrp, Vect* vpn, Vect* vuv, double fov)
 {
-	_vrp = new Vect(1, 1, 1);
-	_vpn = new Vect(1, 0, 0);
-	_vuv = new Vect(1, 1, 0);
+	_vrp = vrp;
+	_vpn = vpn;
+	_vuv = vuv;
+	_fov = fov;
 }
 
 Camera::~Camera()

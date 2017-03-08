@@ -10,13 +10,13 @@ class Camera
 	// Camera Parameters
 	// Camera Position (eyepoint)
 	// VRP (View Reference Point)
-	Vect _vrp;
+	Vect* _vrp;
 	// Camera Direction
 	// VPN (View Plane Normal)
-	Vect _vpn;
+	Vect* _vpn;
 	// Camera Rotation
 	// VUV (View Up Vector)
-	Vect _vuv;
+	Vect* _vuv;
 	// Camera Angle
 	// (aka.: How wide you can see?)
 	// FOV (Field of View)
@@ -38,9 +38,9 @@ public:
 	// Default Camera
 	Camera();
 	// Camera without the FOV (angle)
-	Camera(Vect vrp, Vect vpn, Vect vuv);
+	Camera(Vect* vrp, Vect* vpn, Vect* vuv);
 	// Camera with the FOV (angle)
-	Camera(Vect vrp, Vect vpn, Vect vuv, double angle);
+	Camera(Vect* vrp, Vect* vpn, Vect* vuv, double fov);
 	// destructor
 	~Camera();
 };
