@@ -22,6 +22,4 @@ public:
 	double getVectZ() { return _z; }
 
 };
-
-
 #endif // !_VECT_H

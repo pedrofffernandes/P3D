@@ -1,6 +1,9 @@
 #pragma once
 class Camera
 {
+	// Camera Parameters
+	// Camera position
+	// VRP (View Reference Point)
 	double _eye[3], _at[3], up[3];
 	float _fovy;
 	float _near, _far;
