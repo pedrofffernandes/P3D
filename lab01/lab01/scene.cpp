@@ -8,7 +8,7 @@
 
 
 
-#include "scene.h"
+#include "Scene.h"
 
 #include "parse.h"
 #include "animation.h"

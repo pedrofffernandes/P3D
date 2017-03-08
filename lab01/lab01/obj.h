@@ -1,5 +1,6 @@
 #pragma once
-#include "material.h"
+#include "Material.h"
+
 class Obj
 {
 

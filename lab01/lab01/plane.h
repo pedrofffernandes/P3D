@@ -1,5 +1,6 @@
 #pragma once
-#include "obj.h"
+#include "Obj.h"
+
 class Plane : Obj
 {
 	double _point1[3];

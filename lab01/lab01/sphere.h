@@ -1,5 +1,5 @@
 #pragma once
-#include "obj.h"
+#include "Obj.h"
 
 class Sphere : public Obj
 {
