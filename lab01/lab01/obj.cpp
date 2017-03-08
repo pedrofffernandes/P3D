@@ -2,12 +2,12 @@
 
 
 
-obj::obj(material * m)
+Obj::Obj(Material * m)
 {
 	_material = m;
 }
 
 
-obj::~obj()
+Obj::~Obj()
 {
 }

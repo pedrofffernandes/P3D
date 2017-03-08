@@ -2,7 +2,7 @@
 
 
 
-light::light(double x, double y, double z, double r, double g, double b)
+Light::Light(double x, double y, double z, double r, double g, double b)
 {
 	_position[0] = x;
 	_position[1] = y;
@@ -13,6 +13,6 @@ light::light(double x, double y, double z, double r, double g, double b)
 }
 
 
-light::~light()
+Light::~Light()
 {
 }

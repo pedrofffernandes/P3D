@@ -1,12 +1,12 @@
 #pragma once
 #include "material.h"
-class obj
+class Obj
 {
 
-	material * _material;
+	Material * _material;
 
 public:
-	obj(material * m);
-	~obj();
+	Obj(Material * m);
+	~Obj();
 };
 

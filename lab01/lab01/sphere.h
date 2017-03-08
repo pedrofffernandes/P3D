@@ -1,13 +1,13 @@
 #pragma once
 #include "obj.h"
 
-class sphere : public obj
+class Sphere : public Obj
 {
 	double _position[3];
 	double _radius;
 
 public:
-	sphere(double x, double y, double z, double r, material * mat) : obj(mat) {};
-	~sphere();
+	Sphere(double x, double y, double z, double r, Material * mat) : Obj(mat) {};
+	~Sphere();
 };
 
