@@ -76,8 +76,8 @@ void Scene::addLight(Light * light)
 	_lights.push_back(light);
 }
 
-bool Scene::ParseFile(FILE *file, int width, int height)
-{
+
+bool Scene::parseFile(FILE *file, int width, int height) {
 	int ch;
 
 	while ((ch = getc(file)) != EOF)
@@ -93,7 +93,7 @@ bool Scene::ParseFile(FILE *file, int width, int height)
 			continue;
 
 		case 'v':
-			//parseViewpoint(f, width, height);		//TODO
+			parseViewpoint(file, width, height);		//TODO
 			break;
 			/* Light sources. */
 		case 'l':
@@ -132,17 +132,19 @@ bool Scene::ParseFile(FILE *file, int width, int height)
 				default:
 					printf("unknown NFF primitive code: %c\n", ch);
 					exit(1);
-			break;
-		}
 
+				}
+
+			}
 			/* Unknown. */
 		default:
 			printf("unknown NFF primitive code: %c\n", ch);
 			exit(1);
 
 		}
+		}
+		return true;
 	}
-	return true;
 }
 
 
@@ -170,9 +172,7 @@ bool Scene::ParseFile(FILE *file, int width, int height)
 * or
 *    % [ string ]
 */
-static void
-parseComment(FILE *f)
-{
+void Scene::parseComment(FILE *f) {
 	char str[1000];
 	fgets(str, 1000, f);
 }
@@ -225,35 +225,37 @@ parseComment(FILE *f)
 * @param fp The file handle of the input file.
 * @param scene The Scene object to populate with the viewpoint.
 */
-static void
-parseViewpoint(FILE *fp, Scene& scene, int width, int height)
+void Scene::parseViewpoint(FILE *file, int width, int height)
 {
 	/* Initialize variables here to avoid crossing them with gotos. */
-	vec3 COP, AT, UP;
+	double eyex, eyey, eyez;
+	double atx, aty, atz;
+	double upx, upy, upz;
+	double fovAngle;
+	double hither;
 
-	if (fscanf(fp, " from %f %f %f", &COP.x, &COP.y, &COP.z) != 3)
+
+	if (fscanf(file, " from %f %f %f", &eyex, &eyey, &eyez) != 3)
 	{
 		goto fmterr;
 	}
 	;
-	if (fscanf(fp, " at %f %f %f", &AT.x, &AT.y, &AT.z) != 3)
+	if (fscanf(file, " at %f %f %f", &atx, &aty, &atz) != 3)
 	{
 		goto fmterr;
 	}
 
-	if (fscanf(fp, " up %f %f %f", &UP.x, &UP.y, &UP.z) != 3)
+	if (fscanf(file, " up %f %f %f", &upx, &upy, &upz) != 3)
 	{
 		goto fmterr;
 	}
 
-	float fovAngle;
-	if (fscanf(fp, " angle %f", &fovAngle) != 1)
+	if (fscanf(file, " angle %f", &fovAngle) != 1)
 	{
 		goto fmterr;
 	}
 
-	float hither;
-	if (fscanf(fp, " hither %f", &hither) != 1)
+	if (fscanf(file, " hither %f", &hither) != 1)
 	{
 		goto fmterr;
 	}
@@ -265,7 +267,7 @@ parseViewpoint(FILE *fp, Scene& scene, int width, int height)
 
 	int resX;
 	int resY;
-	if (fscanf(fp, " resolution %d %d", &resX, &resY) != 2)
+	if (fscanf(file, " resolution %d %d", &resX, &resY) != 2)
 	{
 		goto fmterr;
 	}
@@ -283,8 +285,11 @@ parseViewpoint(FILE *fp, Scene& scene, int width, int height)
 	{
 		resY = height;
 	}
-
-	scene.cam = Camera(COP, AT, UP, resX, resY, fovAngle);
+	Vect * eye = new Vect(eyex, eyey, eyez);
+	Vect * at = new Vect(atx, aty, atz);
+	Vect * up = new Vect(upx, upy, upz);
+	
+	this->_camera = new Camera(eye, at, up, resX, resY, fovAngle);
 
 	return;
 
@@ -702,7 +707,7 @@ parseInclude(FILE *fp, Scene& scene, int width, int height)
 		if (ifp = fopen(filename, "r"))
 		{
 			/* Parse the file recursively. */
-			viParseFile(ifp, scene, width, height);
+			parseFile(ifp, width, height);
 			fclose(ifp);
 		}
 		else
@@ -1699,7 +1704,7 @@ viParseFile(FILE *f, Scene& scene, int width, int height)
 			break;
 			/* View point. */
 		case 'v':
-			parseViewpoint(f, scene, width, height);
+			parseViewpoint(f, width, height);
 			break;
 			/* Light sources. */
 		case 'l':
