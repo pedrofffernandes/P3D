@@ -6,21 +6,15 @@
 * Simple parser for data files, including argument parsing.
 */
 
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+
+
+#include "scene.h"
 
 #include "parse.h"
 #include "animation.h"
 #include "texture.h"
 
-#include "camara.h"
-#include "light.h"
-#include "material.h"
-#include "Ray.h"
-#include "plane.h"
-#include "sphere.h"
+
 
 #ifndef  M_PI
 #define  M_PI 3.1415926535897932384626433
@@ -44,7 +38,13 @@ typedef float Vec4f[4];
 static int gDetailLevel = 0;
 
 /* Current material. */
-Material mat;
+material mat;
+
+/* Scene */
+
+Scene::Scene() {}
+
+Scene::~Scene() {}
 
 /**
 * Parses an AFF comment. As soon as a "#" (or "%") character is
