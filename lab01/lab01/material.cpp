@@ -1,8 +1,8 @@
-#include "material.h"
+#include "Material.h"
 
 
 
-material::material(double r, double g, double b, double kd, double ks, double shine, double T, double refraction)
+Material::Material(double r, double g, double b, double kd, double ks, double shine, double T, double refraction)
 {
 	// initializing color
 	_rgb[0] = r;
@@ -21,6 +21,6 @@ material::material(double r, double g, double b, double kd, double ks, double sh
 }
 
 
-material::~material()
+Material::~Material()
 {
 }

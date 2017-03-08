@@ -1,13 +1,13 @@
-#include "obj.h"
+#include "Obj.h"
 
 
 
-obj::obj(material * m)
+Obj::Obj(Material * m)
 {
 	_material = m;
 }
 
 
-obj::~obj()
+Obj::~Obj()
 {
 }

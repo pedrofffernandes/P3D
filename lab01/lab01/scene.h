@@ -7,11 +7,11 @@
 #include <list>
 
 #include "Camera.h"
-#include "light.h"
-#include "material.h"
+#include "Light.h"
+#include "Material.h"
 #include "Ray.h"
-#include "plane.h"
-#include "sphere.h"
+#include "Plane.h"
+#include "Sphere.h"
 
 class Scene {
 	std::list<light*> _lights;

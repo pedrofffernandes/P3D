@@ -1,5 +1,5 @@
 #pragma once
-class material
+class Material
 {
 	double _rgb [3];
 	double _kd;
@@ -8,7 +8,7 @@ class material
 	double _T; // transmitance
 	double _refraction; // index of refraction
 public:
-	material(double r, double g, double b, double kd, double ks, double shine, double T, double refraction);
-	~material();
+	Material(double r, double g, double b, double kd, double ks, double shine, double T, double refraction);
+	~Material();
 };
 

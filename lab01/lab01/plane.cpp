@@ -1,10 +1,10 @@
-#include "plane.h"
+#include "Plane.h"
 
 
 
-plane::plane(double px1, double py1, double pz1,
+Plane::Plane(double px1, double py1, double pz1,
 	double px2, double py2, double pz2,
-	double px3, double py3, double pz3, material * mat) : obj(mat)
+	double px3, double py3, double pz3, Material * mat) : Obj(mat)
 {
 	_point1[0] = px1;
 	_point1[1] = py1;
@@ -21,6 +21,6 @@ plane::plane(double px1, double py1, double pz1,
 }
 
 
-plane::~plane()
+Plane::~Plane()
 {
 }
