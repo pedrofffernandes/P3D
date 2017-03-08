@@ -1,10 +1,17 @@
 #pragma once
+#ifndef _CAMERA_H
+#define _CAMERA_H
+
+#include "Vect.h"
+
+
 class Camera
 {
 	// Camera Parameters
 	// Camera position
 	// VRP (View Reference Point)
-	double _eye[3], _at[3], up[3];
+	Vect _eye[3];
+	_at[3], up[3];
 	float _fovy;
 	float _near, _far;
 	int _ResX, _ResY;
@@ -23,3 +30,4 @@ public:
 	~Camera();
 };
 
+#endif // !_CAMERA_H
