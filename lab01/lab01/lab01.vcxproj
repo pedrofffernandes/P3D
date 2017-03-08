@@ -89,7 +89,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\João\Documents\Cadeiras\p3D_programacao 3D\myWork\glut\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\PC-ASUS\Documents\Visual Studio 2015\Projects\Middleware\glut\include;C:\Users\João\Documents\Cadeiras\p3D_programacao 3D\myWork\glut\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -154,6 +154,7 @@
     <ClCompile Include="material.cpp" />
     <ClCompile Include="obj.cpp" />
     <ClCompile Include="plane.cpp" />
+    <ClCompile Include="Ray.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="sphere.cpp" />
   </ItemGroup>
@@ -163,6 +164,7 @@
     <ClInclude Include="material.h" />
     <ClInclude Include="obj.h" />
     <ClInclude Include="plane.h" />
+    <ClInclude Include="Ray.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="sphere.h" />
   </ItemGroup>

@@ -3,6 +3,8 @@
 #include <iostream>
 #include <stdio.h>
 #include "scene.h"
+#include <vector>
+
 #define MAX_DEPTH 6
 Scene* scene = NULL;
 int RES_X, RES_Y;

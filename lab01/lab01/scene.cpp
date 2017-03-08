@@ -15,6 +15,13 @@
 #include "animation.h"
 #include "texture.h"
 
+#include "camara.h"
+#include "light.h"
+#include "material.h"
+#include "Ray.h"
+#include "plane.h"
+#include "sphere.h"
+
 #ifndef  M_PI
 #define  M_PI 3.1415926535897932384626433
 #endif
