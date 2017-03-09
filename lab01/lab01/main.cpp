@@ -9,7 +9,7 @@
 Scene * scene = NULL;
 int RES_X, RES_Y;
 
-/*
+
 
 void reshape(int w, int h)
 {
@@ -22,9 +22,12 @@ void reshape(int w, int h)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 }
+
 // Draw function by primary ray casting from the eye towards the scene's objects
+
 void drawScene()
 {
+	/*
 	for (int y = 0; y < RES_Y; y++)
 	{
 		for (int x = 0; x < RES_X; x++)
@@ -38,22 +41,24 @@ void drawScene()
 			glFlush();
 		}
 	}
+	*/
 	printf("Terminou!\n");
 }
 
-*/
+
 
 int main(int argc, char**argv)
 {
-	std::cout << "begin\n";
 	scene = new Scene();
 	if (!(scene->load_nff("jap.nff"))) return 0;
 	
-	/*
+
 	
-	RES_X = scene->GetCamera()->GetResX();
-	RES_Y = scene->GetCamera()->GetResY();
+	RES_X = scene->getCamera()->getResX();
+	RES_Y = scene->getCamera()->getResY();
 	printf("resx = %d resy= %d.\n", RES_X, RES_Y);
+
+	
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
 
@@ -67,6 +72,4 @@ int main(int argc, char**argv)
 	glDisable(GL_DEPTH_TEST);
 	glutMainLoop();
 	return 0;
-
-	*/
 }

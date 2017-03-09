@@ -16,25 +16,6 @@
 #define  M_PI (float) 3.1415926535
 #endif
 
-
-
-typedef float Vec2f[2];
-typedef float Vec3f[3];
-typedef float Vec4f[4];
-
-#define X 0 
-#define Y 1  
-#define Z 2  
-#define W 3  
-
-#define R 0  
-#define G 1  
-#define B 2  
-#define A 3 /* Alpha. */
-
-/* Detail level. Zero as default. */
-static int gDetailLevel = 0;
-
 /* Current material. */
 Material * mat;
 
@@ -129,20 +110,16 @@ bool Scene::parseFile(FILE *file) {
 			/* Polygon or patch. */
 		case 'p':
 			{
-				char cha = getc(file);
-				switch (cha)
-				{
-				case 'p':
-					//parsePolyPatch(f, scene);		//TODO
-					break;
-				case 'l':
-					parsePlane(file);			
-					break;
-				default:
-					printf("unknown NFF primitive code: p%c\n", cha);
-					exit(1);
-				}
-				break;
+			char cha = getc(file);
+			if (cha == 'p') {
+				//parsePolyPatch(f, scene);		//TODO
+			} else if (cha == 'l') {
+				parsePlane(file);
+			} else {
+				printf("unknown NFF primitive code: p%c\n", cha);
+				exit(1);
+			}
+			break;
 			}
 		default:
 			printf("unknown NFF primitive code: %c\n", ch);
@@ -281,12 +258,8 @@ void Scene::parseFill(FILE * file) {
 		printf("fill material syntax error");
 		exit(1);
 	}
-	mat = new Material(rgb, kD, kS, kT, shine, ior);
+	mat = new Material(rgb, kD, kS, shine, kT, ior);
 }
-
-
-
-
 
 void Scene::parseSphere(FILE *file)
 {
