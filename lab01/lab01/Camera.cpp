@@ -27,3 +27,11 @@ Camera::Camera(Vect* vrp, Vect* vpn, Vect* vuv, int resX, int resY, float fov)
 Camera::~Camera()
 {
 }
+
+int Camera::getResX() {
+	return _resX;
+}
+
+int Camera::getResY() {
+	return _resY;
+}

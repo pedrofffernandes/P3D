@@ -46,6 +46,9 @@ public:
 	Camera(Vect* vrp, Vect* vpn, Vect* vuv, int resX, int resY, float fov);
 	// destructor
 	~Camera();
+
+	int Camera::getResX();
+	int Camera::getResY();
 };
 
 #endif // !_CAMERA_H
