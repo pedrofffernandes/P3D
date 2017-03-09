@@ -6,8 +6,10 @@
 #include <vector>
 
 #define MAX_DEPTH 6
-Scene* scene = NULL;
+Scene * scene = NULL;
 int RES_X, RES_Y;
+
+/*
 
 void reshape(int w, int h)
 {
@@ -38,10 +40,17 @@ void drawScene()
 	}
 	printf("Terminou!\n");
 }
+
+*/
+
 int main(int argc, char**argv)
 {
+	std::cout << "begin\n";
 	scene = new Scene();
 	if (!(scene->load_nff("jap.nff"))) return 0;
+	
+	/*
+	
 	RES_X = scene->GetCamera()->GetResX();
 	RES_Y = scene->GetCamera()->GetResY();
 	printf("resx = %d resy= %d.\n", RES_X, RES_Y);
@@ -58,4 +67,6 @@ int main(int argc, char**argv)
 	glDisable(GL_DEPTH_TEST);
 	glutMainLoop();
 	return 0;
+
+	*/
 }

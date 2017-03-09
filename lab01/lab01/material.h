@@ -4,13 +4,13 @@
 class Material
 {
 	Vect* _rgb;
-	double _kd;
-	double _ks;
-	double _shine;
-	double _T; // transmitance
-	double _refraction; // index of refraction
+	float _kd;
+	float _ks;
+	float _shine;
+	float _T; // transmitance
+	float _refraction; // index of refraction
 public:
-	Material(Vect* rgb, double kd, double ks, double shine, double T, double refraction);
+	Material(Vect* rgb, float kd, float ks, float shine, float T, float refraction);
 	~Material();
 };
 

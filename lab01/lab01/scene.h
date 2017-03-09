@@ -33,10 +33,12 @@ public:
 	static void parseComment(FILE * f);
 
 
-	bool Scene::parseFile(FILE *file, int width, int height);
-	void Scene::parseViewpoint(FILE *file, int width, int height);
+	bool Scene::parseFile(FILE *file);
+	void Scene::parseViewpoint(FILE *file);
 	void Scene::parseLight(FILE *file);
 	void Scene::parseBackground(FILE * file);
+	void Scene::parseFill(FILE * file);
+	//void Scene::parseCone(FILE * file);
 	void Scene::parseSphere(FILE * file);
 	void Scene::parsePlane(FILE * file);
 
