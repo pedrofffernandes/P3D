@@ -6,7 +6,7 @@ class Ray
 	Vect* _origin;
 	Vect* _direction;
 
-	double _t;
+	float _t;
 
 public:
 	Ray(Vect* origin, Vect* direction);

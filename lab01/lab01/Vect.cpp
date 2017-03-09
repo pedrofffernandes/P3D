@@ -9,7 +9,7 @@ Vect::Vect()
 	_z = 0;
 }
 
-Vect::Vect(double x, double y, double z)
+Vect::Vect(float x, float y, float z)
 {
 	_x = x;
 	_y = y;

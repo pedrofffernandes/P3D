@@ -2,7 +2,7 @@
 
 
 
-Material::Material(Vect* rgb, double kd, double ks, double shine, double T, double refraction)
+Material::Material(Vect* rgb, float kd, float ks, float shine, float T, float refraction)
 {
 	// initializing color
 	_rgb = rgb;
