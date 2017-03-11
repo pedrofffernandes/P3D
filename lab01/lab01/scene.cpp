@@ -187,7 +187,7 @@ void Scene::parseViewpoint(FILE *file)
 	Vect * at = new Vect(atx, aty, atz);
 	Vect * up = new Vect(upx, upy, upz);
 
-	this->_camera = new Camera(eye, at, up, resX, resY, fovAngle);
+	this->_camera = new Camera(eye, at, up, resX, resY, fovAngle, hither);
 
 	return;
 
