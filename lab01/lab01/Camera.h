@@ -30,7 +30,7 @@ class Camera
 	//Camera far
 	float _far;
 	//Distance Camera to Plane
-	Vect * _d;
+	float _d;
 
 	float _w, _h;
 	// Camera reference vector x
