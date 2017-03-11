@@ -3,6 +3,7 @@
 #define _CAMERA_H
 
 #include "Vect.h"
+#include "Ray.h"
 
 
 class Camera
@@ -49,6 +50,8 @@ public:
 
 	int Camera::getResX();
 	int Camera::getResY();
+	Ray * Camera::PrimaryRay(int x, int y);
+
 };
 
 #endif // !_CAMERA_H

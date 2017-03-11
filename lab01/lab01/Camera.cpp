@@ -35,3 +35,10 @@ int Camera::getResX() {
 int Camera::getResY() {
 	return _resY;
 }
+
+Ray * Camera::PrimaryRay(int x, int y)
+{
+	Vect * ze = (_vrp->minus(_vpn))->normalize();
+	Vect * xe = (_vuv->crossP(ze))->normalize();
+	return nullptr;
+}
