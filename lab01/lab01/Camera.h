@@ -26,6 +26,11 @@ class Camera
 	// FOV (Field of View)
 	float _fov;
 
+	float _w, _h;
+	Vect * _xe;
+	Vect * _ye;
+	Vect * _ze;
+
 
 
 	// Window settings
@@ -33,9 +38,6 @@ class Camera
 	/*
 		float _fovy;
 		float _near, _far;
-		int _ResX, _ResY;
-		float _w, _h;
-		double _xe[3], _ye[3], _ze[3];
 	*/
 
 public:

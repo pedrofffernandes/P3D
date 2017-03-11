@@ -22,6 +22,9 @@ Camera::Camera(Vect* vrp, Vect* vpn, Vect* vuv, int resX, int resY, float fov)
 	_fov = fov;
 	_resX = resX;
 	_resY = resY;
+	_ze = (_vrp->minus(_vpn))->normalize();
+	_xe = (_vuv->crossP(_ze))->normalize();
+	_ye = _ze->crossP(_xe);
 }
 
 Camera::~Camera()
@@ -38,7 +41,6 @@ int Camera::getResY() {
 
 Ray * Camera::PrimaryRay(int x, int y)
 {
-	Vect * ze = (_vrp->minus(_vpn))->normalize();
-	Vect * xe = (_vuv->crossP(ze))->normalize();
+	
 	return nullptr;
 }
