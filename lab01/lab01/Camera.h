@@ -25,10 +25,19 @@ class Camera
 	// (aka.: How wide you can see?)
 	// FOV (Field of View)
 	float _fov;
+	// Camera Near
+	float _hither;
+	//Camera far
+	float _far;
+	//Distance Camera to Plane
+	Vect * _d;
 
 	float _w, _h;
+	// Camera reference vector x
 	Vect * _xe;
+	// Camera reference vector y
 	Vect * _ye;
+	// Camera reference vector z
 	Vect * _ze;
 
 
@@ -46,7 +55,7 @@ public:
 	// Camera without the FOV (angle)
 	Camera(Vect* vrp, Vect* vpn, Vect* vuv);
 	// Camera with the FOV (angle)
-	Camera(Vect* vrp, Vect* vpn, Vect* vuv, int resX, int resY, float fov);
+	Camera(Vect* vrp, Vect* vpn, Vect* vuv, int resX, int resY, float fov, float hither);
 	// destructor
 	~Camera();
 

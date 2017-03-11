@@ -14,7 +14,7 @@ Camera::Camera(Vect* vrp, Vect* vpn, Vect* vuv)
 	_vpn = vpn;
 	_vuv = vuv;
 }
-Camera::Camera(Vect* vrp, Vect* vpn, Vect* vuv, int resX, int resY, float fov)
+Camera::Camera(Vect* vrp, Vect* vpn, Vect* vuv, int resX, int resY, float fov, float hither)
 {
 	_vrp = vrp;
 	_vpn = vpn;
@@ -22,6 +22,10 @@ Camera::Camera(Vect* vrp, Vect* vpn, Vect* vuv, int resX, int resY, float fov)
 	_fov = fov;
 	_resX = resX;
 	_resY = resY;
+	_hither = hither;
+	
+	_d = (_vrp->minus(_vpn))->length();
+
 	_ze = (_vrp->minus(_vpn))->normalize();
 	_xe = (_vuv->crossP(_ze))->normalize();
 	_ye = _ze->crossP(_xe);
