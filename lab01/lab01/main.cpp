@@ -27,21 +27,22 @@ void reshape(int w, int h)
 
 void drawScene()
 {
-	/*
+	
 	for (int y = 0; y < RES_Y; y++)
 	{
 		for (int x = 0; x < RES_X; x++)
 		{
-			Ray ray = scene->GetCamera()->PrimaryRay(x, y);
-			Color color = rayTracing(ray, 1, 1.0); //depth=1, ior=1.0
+			//Ray ray = scene->GetCamera()->PrimaryRay(x, y);
+			//Color color = rayTracing(ray, 1, 1.0); //depth=1, ior=1.0
 			glBegin(GL_POINTS);
-			glColor3f(color.r(), color.g(), color.b());
+			//glColor3f(color.r(), color.g(), color.b());
+			glColor3f(1.0f, 0, 0);
 			glVertex2f(x, y);
 			glEnd();
 			glFlush();
 		}
 	}
-	*/
+	
 	printf("Terminou!\n");
 }
 
