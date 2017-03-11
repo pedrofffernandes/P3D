@@ -3,7 +3,9 @@
 
 class Ray
 {
+	//Ray´s origin
 	Vect* _origin;
+	//Ray's direction
 	Vect* _direction;
 
 	float _t;
@@ -11,5 +13,9 @@ class Ray
 public:
 	Ray(Vect* origin, Vect* direction);
 	~Ray();
+	//Returns _direction
+	Vect * getD();
+	//Returns _origin
+	Vect * getO();
 };
 

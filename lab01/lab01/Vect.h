@@ -22,6 +22,8 @@ public:
 	Vect * minus(Vect * vect);
 	//Does the cross product
 	Vect * crossP(Vect * vect);
+	//Does the dot product
+	float dotP(Vect * vect);
 	//Multiplies the vector by a float f
 	Vect * multiply(float f);
 	//Adds two vectors

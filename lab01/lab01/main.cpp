@@ -32,7 +32,7 @@ void drawScene()
 	{
 		for (int x = 0; x < RES_X; x++)
 		{
-			//Ray ray = scene->GetCamera()->PrimaryRay(x, y);
+			Ray * ray = scene->getCamera()->PrimaryRay(x, y);
 			//Color color = rayTracing(ray, 1, 1.0); //depth=1, ior=1.0
 			glBegin(GL_POINTS);
 			//glColor3f(color.r(), color.g(), color.b());
