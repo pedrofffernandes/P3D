@@ -19,6 +19,8 @@ public:
 
 	Vect * minus(Vect * vect);
 
+	Vect * crossP(Vect * vect);
+
 	// METHOD functions
 	// get individual coordinates
 	float getVectX() { return _x; }
