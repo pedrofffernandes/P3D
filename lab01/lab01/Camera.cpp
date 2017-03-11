@@ -50,5 +50,5 @@ Ray * Camera::PrimaryRay(int x, int y) {
 	Vect * vy = _ye->multiply(_h * ((((float)y + 0.5f) / _resY) - 0.5f));
 	Vect * vx = _xe->multiply(_w * ((((float)y + 0.5f) / _resX) - 0.5f));
 	Vect * d = (vz->add(vy))->add(vx);
-	return new Ray(_vrp, d);
+	return new Ray(_vrp, d->normalize());
 }
