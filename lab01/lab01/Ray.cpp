@@ -12,3 +12,13 @@ Ray::Ray(Vect* origin, Vect* direction)
 Ray::~Ray()
 {
 }
+
+Vect * Ray::getD()
+{
+	return _direction;
+}
+
+Vect * Ray::getO()
+{
+	return _origin;
+}
