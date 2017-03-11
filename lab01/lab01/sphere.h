@@ -9,5 +9,7 @@ class Sphere : public Obj
 public:
 	Sphere(Vect* position, float r, Material * mat);
 	~Sphere();
+
+	float intersect(Ray * ray);
 };
 
