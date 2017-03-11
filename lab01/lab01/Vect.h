@@ -21,11 +21,13 @@ public:
 
 	Vect * crossP(Vect * vect);
 
+	float length();
+
 	// METHOD functions
 	// get individual coordinates
-	float getVectX() { return _x; }
-	float getVectY() { return _y; }
-	float getVectZ() { return _z; }
+	float getX() { return _x; }
+	float getY() { return _y; }
+	float getZ() { return _z; }
 
 };
 #endif // !_VECT_H

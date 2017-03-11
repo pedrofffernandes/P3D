@@ -21,7 +21,7 @@ Vect::~Vect()
 }
 
 Vect * Vect::normalize() {
-	float length = sqrt(_x*_x + _y*_y + _z*_z);
+	float length = this->length();
 	_x = _x * (1 / length);
 	_y = _y * (1 / length);
 	_z = _z * (1 / length);
@@ -29,13 +29,17 @@ Vect * Vect::normalize() {
 }
 
 Vect * Vect::minus(Vect * vect) {
-	return new Vect(_x - vect->getVectX(), _y - vect->getVectY(), _z - vect->getVectZ());
+	return new Vect(_x - vect->getX(), _y - vect->getY(), _z - vect->getZ());
 }
 
 Vect * Vect::crossP(Vect * vect) {
 	float x, y, z;
-	x = (this->_y * vect->getVectZ()) - (this->_z * vect->getVectY());
-	y = (this->_x * vect->getVectZ()) - (this->_z * vect->getVectX());
-	z = (this->_x * vect->getVectY()) - (this->_y * vect->getVectX());
+	x = (this->_y * vect->getZ()) - (this->_z * vect->getY());
+	y = (this->_x * vect->getZ()) - (this->_z * vect->getX());
+	z = (this->_x * vect->getY()) - (this->_y * vect->getX());
 	return new Vect(x, y, z);
+}
+
+float Vect::length() {
+	return sqrt(_x*_x + _y*_y + _z*_z);
 }
