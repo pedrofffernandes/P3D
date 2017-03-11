@@ -43,3 +43,17 @@ Vect * Vect::crossP(Vect * vect) {
 float Vect::length() {
 	return sqrt(_x*_x + _y*_y + _z*_z);
 }
+
+Vect * Vect::multiply(float f) {
+	_x = _x * f;
+	_y = _y * f;
+	_z = _z * f;
+	return this;
+}
+
+Vect * Vect::add(Vect * vect) {
+	_x = _x + vect->getX();
+	_y = _y + vect->getY();
+	_z = _z + vect->getZ();
+	return this;
+}

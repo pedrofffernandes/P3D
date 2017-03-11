@@ -14,14 +14,18 @@ public:
 	Vect(float x, float y, float z);
 	// destructor
 	~Vect();
-
-	Vect * normalize();
-
-	Vect * minus(Vect * vect);
-
-	Vect * crossP(Vect * vect);
-
+	
+	//Returns the vector length
 	float length();
+	Vect * normalize();
+	//Subtracts two vectors
+	Vect * minus(Vect * vect);
+	//Does the cross product
+	Vect * crossP(Vect * vect);
+	//Multiplies the vector by a float f
+	Vect * multiply(float f);
+	//Adds two vectors
+	Vect * add(Vect * vect);
 
 	// METHOD functions
 	// get individual coordinates
