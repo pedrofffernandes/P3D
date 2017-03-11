@@ -15,6 +15,10 @@ public:
 	// destructor
 	~Vect();
 
+	Vect * normalize();
+
+	Vect * minus(Vect * vect);
+
 	// METHOD functions
 	// get individual coordinates
 	float getVectX() { return _x; }
