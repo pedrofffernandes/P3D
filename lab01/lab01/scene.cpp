@@ -67,6 +67,11 @@ void Scene::addLight(Light * light)
 	_lights.push_back(light);
 }
 
+Vect * Scene::getBackground()
+{
+	return _background;
+}
+
 
 bool Scene::parseFile(FILE *file) {
 	char ch;

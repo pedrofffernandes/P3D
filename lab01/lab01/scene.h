@@ -29,8 +29,7 @@ public:
 	std::list<Obj*> getObjects();
 	void addObject(Obj * object);
 	void addLight(Light * light);
-
-	static void parseComment(FILE * f);
+	Vect * getBackground();
 
 
 	bool Scene::parseFile(FILE *file);
