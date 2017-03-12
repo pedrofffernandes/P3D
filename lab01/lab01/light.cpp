@@ -16,3 +16,10 @@ Light::~Light()
 void Light::setColor(Vect * rgb) {
 	_rgb = rgb;
 }
+
+Vect * Light::getLVect(Vect * hit)
+{	
+	Vect * lVect = _position->minus(hit);
+	lVect->normalize();
+	return lVect;
+}
