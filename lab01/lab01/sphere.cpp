@@ -27,16 +27,23 @@ float Sphere::intersect(Ray * ray)
 	float cy = _position->getY();
 	float cz = _position->getZ();
 
-	float d = (cy - oy)*(cy - oy) + (cy - oy)*(cy - oy) + (cz - oz)*(cz - oz);
+	//Compute the square distance sphere to ray origin
+	float d = (cx - ox)*(cx - ox) + (cy - oy)*(cy - oy) + (cz - oz)*(cz - oz);
+	//Compare distance squared to radius squared
 	if (d == _radius*_radius)
 		return 0.0f;
+	//Compute B
 	float b = dx*(cx - ox) + dy*(cy - oy) + dz*(cz - oz);
+
 	if (d > _radius*_radius)	
 		if (b < 0)
 			return 0.0f;
+	//Compute R
 	float R = b*b - d + _radius*_radius;
+	//If R < 0 then Sphere not intersected
 	if (R < 0)
 		return 0.0f;
+	//Choose the root that is in front
 	if (d > _radius*_radius)
 		return b - sqrt(R);
 	if (d < _radius*_radius)

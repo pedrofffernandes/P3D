@@ -8,7 +8,7 @@
 #define MAX_DEPTH 6
 Scene * scene = NULL;
 int RES_X, RES_Y;
-
+Vect * rayTracing(Ray * ray, int depth, float ior);
 
 
 void reshape(int w, int h)
@@ -31,21 +31,52 @@ void drawScene()
 	for (int y = 0; y < RES_Y; y++)
 	{
 		for (int x = 0; x < RES_X; x++)
-		{
+		{	
+			std::cout << scene->getCamera()->getResX() << '\n';
 			Ray * ray = scene->getCamera()->PrimaryRay(x, y);
-			//Color color = rayTracing(ray, 1, 1.0); //depth=1, ior=1.0
+			Vect * color = rayTracing(ray, 1, 1.0); //depth=1, ior=1.0
 			glBegin(GL_POINTS);
-			//glColor3f(color.r(), color.g(), color.b());
-			glColor3f(1.0f, 0, 0);
+			glColor3f(color->getX(), color->getY(), color->getZ());
 			glVertex2f(x, y);
 			glEnd();
 			glFlush();
+			
 		}
 	}
 	
 	printf("Terminou!\n");
 }
 
+Vect * rayTracing(Ray * ray, int depth, float ior) {
+	std::list<Obj*> objs = scene->getObjects();
+	std::list<Obj*>::iterator itO;
+
+	Obj* closest = nullptr;
+	float dist = 9999, distNew;
+	for (itO = objs.begin(); itO != objs.end(); itO++) {
+		distNew = ((Obj*)*itO)->intersect(ray);				//Intersect
+		if (distNew > 1e-6 && distNew < dist) {
+			dist = distNew;
+			closest = (Obj*)*itO;
+		}		
+	}
+	if (closest == nullptr)
+		return scene->getBackground();
+	return new Vect(1, 0, 0);
+
+	std::list<Light*> lights = scene->getLights();
+	std::list<Light*>::iterator itL;
+	for (itL = lights.begin(); itL != lights.end(); itL++) {
+		//Vect * lVect = ((Light*)*itL)->getLVect(ray);
+		//if(lVect->normal > 0) {
+		//	Ray * newRay = new Ray(hit, lVect);
+		//	if(!point in shadow)
+		//		color += diffuse color + specular color;
+	}
+
+
+	//return nullptr;
+}
 
 
 int main(int argc, char**argv)

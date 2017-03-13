@@ -34,9 +34,9 @@ Vect * Vect::minus(Vect * vect) {
 
 Vect * Vect::crossP(Vect * vect) {
 	float x, y, z;
-	x = (this->_y * vect->getZ()) - (this->_z * vect->getY());
-	y = (this->_x * vect->getZ()) - (this->_z * vect->getX());
-	z = (this->_x * vect->getY()) - (this->_y * vect->getX());
+	x = (_y * vect->getZ()) - (_z * vect->getY());
+	y = - ((_x * vect->getZ()) - (_z * vect->getX()));
+	z = (_x * vect->getY()) - (_y * vect->getX());
 	return new Vect(x, y, z);
 }
 
@@ -49,17 +49,15 @@ float Vect::length() {
 }
 
 Vect * Vect::multiply(float f) {
-	float x, y, z;
-	x = _x * f;
-	y = _y * f;
-	z = _z * f;
+	_x = _x * f;
+	_y = _y * f;
+	_z = _z * f;
 	return this;
 }
 
 Vect * Vect::add(Vect * vect) {
-	float x, y, z;
-	x = _x + vect->getX();
-	y = _y + vect->getY();
-	z = _z + vect->getZ();
+	_x = _x + vect->getX();
+	_y = _y + vect->getY();
+	_z = _z + vect->getZ();
 	return this;
 }
