@@ -26,13 +26,12 @@ void reshape(int w, int h)
 // Draw function by primary ray casting from the eye towards the scene's objects
 
 void drawScene()
-{
-	
+{	
 	for (int y = 0; y < RES_Y; y++)
 	{
 		for (int x = 0; x < RES_X; x++)
 		{	
-			std::cout << scene->getCamera()->getResX() << '\n';
+			
 			Ray * ray = scene->getCamera()->PrimaryRay(x, y);
 			Vect * color = rayTracing(ray, 1, 1.0); //depth=1, ior=1.0
 			glBegin(GL_POINTS);
@@ -88,6 +87,7 @@ int main(int argc, char**argv)
 	
 	RES_X = scene->getCamera()->getResX();
 	RES_Y = scene->getCamera()->getResY();
+	
 	printf("resx = %d resy= %d.\n", RES_X, RES_Y);
 
 	

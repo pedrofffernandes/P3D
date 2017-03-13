@@ -49,15 +49,17 @@ float Vect::length() {
 }
 
 Vect * Vect::multiply(float f) {
-	_x = _x * f;
-	_y = _y * f;
-	_z = _z * f;
-	return this;
+	float x, y, z;
+	x = _x * f;
+	y = _y * f;
+	z = _z * f;
+	return new Vect(x, y, z);
 }
 
 Vect * Vect::add(Vect * vect) {
-	_x = _x + vect->getX();
-	_y = _y + vect->getY();
-	_z = _z + vect->getZ();
-	return this;
+	float x, y, z;
+	x = _x + vect->getX();
+	y = _y + vect->getY();
+	z = _z + vect->getZ();
+	return new Vect(x, y, z);
 }

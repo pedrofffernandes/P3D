@@ -33,19 +33,15 @@ float Plane::intersect(Ray * ray)
 	Vect * p13 = _point3->minus(_point1);
 	//Get normal
 	Vect * n =  p12->crossP(p13);
-	//Get d(from plane equation)
-	if ((n->dotP(_point1)) < 0) {
-		n = n->multiply(-1);
-	}
+	
 	a = n->getX();
 	b = n->getY();
 	c = n->getZ();
-	d = a*_point1->getX() + b*_point1->getY() + c*_point1->getZ();
-	
+	d = a*_point1->getX() + b*_point1->getY() + c*_point1->getZ();	
 	n->normalize();
 	
-	//if (n->dotP(ray->getD()) < 1e-6 && n->dotP(ray->getD()) > -1e-6)
-	//	return 0.0f;
+	if (n->dotP(ray->getD()) < 1e-6 && n->dotP(ray->getD()) > -1e-6)
+		return 0.0f;
 	//Get closest point from origim to plane
 	den = (a*a + b*b + c*c);
 	x = (a*d) / den;
@@ -56,7 +52,9 @@ float Plane::intersect(Ray * ray)
 	//float deno = n->dotP(ray->getD());
 	//float cima = n->dotP(ray->getO()) + dp0;
 	//return -(cima / deno);
-	//printf("%f", -(d + ray->getO()->getZ()*c + ray->getO()->getY()*b + ray->getO()->getX()*a) / (ray->getD()->getZ()*c + ray->getD()->getY()*b + ray->getD()->getX()*a));
-
-	return ((p0->minus(ray->getO()))->dotP(n)) / ray->getD()->dotP(n);
+	//printf("%f", );
+	//return (d + ray->getO()->getZ()*c + ray->getO()->getY()*b + ray->getO()->getX()*a) / (ray->getD()->getZ()*c + ray->getD()->getY()*b + ray->getD()->getX()*a);
+	a = ((p0->minus(ray->getO()))->dotP(n)) / ray->getD()->dotP(n);
+	std::cout << a << '\n';
+	return a;
 }
