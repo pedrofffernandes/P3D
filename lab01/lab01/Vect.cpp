@@ -22,10 +22,11 @@ Vect::~Vect()
 
 Vect * Vect::normalize() {
 	float length = this->length();
-	_x = _x * (1 / length);
-	_y = _y * (1 / length);
-	_z = _z * (1 / length);
-	return this;
+	float x, y, z;
+	x = _x / length;
+	y = _y / length;
+	z = _z / length;
+	return new Vect(x, y, z);
 }
 
 Vect * Vect::minus(Vect * vect) {

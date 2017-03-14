@@ -31,7 +31,6 @@ void drawScene()
 	{
 		for (int x = 0; x < RES_X; x++)
 		{	
-			
 			Ray * ray = scene->getCamera()->PrimaryRay(x, y);
 			Vect * color = rayTracing(ray, 1, 1.0); //depth=1, ior=1.0
 			glBegin(GL_POINTS);
@@ -54,6 +53,7 @@ Vect * rayTracing(Ray * ray, int depth, float ior) {
 	float dist = 9999, distNew;
 	for (itO = objs.begin(); itO != objs.end(); itO++) {
 		distNew = ((Obj*)*itO)->intersect(ray);				//Intersect
+
 		if (distNew > 1e-6 && distNew < dist) {
 			dist = distNew;
 			closest = (Obj*)*itO;

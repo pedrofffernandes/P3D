@@ -6,7 +6,7 @@ Ray::Ray(Vect* origin, Vect* direction)
 {
 	_origin = origin;
 	_direction = direction;
-	_direction->normalize();
+	_direction = direction->normalize();
 }
 
 

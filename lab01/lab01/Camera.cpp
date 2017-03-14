@@ -49,7 +49,7 @@ int Camera::getResY() {
 }
 
 Ray * Camera::PrimaryRay(int x, int y) {
-	Vect * vz = _ze->multiply(_d);
+	Vect * vz = _ze->multiply(-_d);
 	Vect * vy = _ye->multiply(_h * (((y + 0.5f) / _resY) - 0.5f));
 	Vect * vx = _xe->multiply(_w * (((x + 0.5f) / _resX) - 0.5f));
 	
