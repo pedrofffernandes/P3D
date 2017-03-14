@@ -4,3 +4,11 @@ lab01/.vs/lab01/v14/.suo
 lab01/lab01/Debug/
 lab01/lab01/jap.nff
 lab01/Debug/
+*.dll
+*.obj
+*.log
+*.tlog
+*.lastbuildstate
+*.idb
+*.pdb
+*.vcxproj

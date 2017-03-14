@@ -6,9 +6,11 @@
 #include <vector>
 
 #define MAX_DEPTH 6
+#define EPSILON 1e-5
 Scene * scene = NULL;
 int RES_X, RES_Y;
 Vect * rayTracing(Ray * ray, int depth, float ior);
+bool inShadow(Ray* ray);
 
 
 void reshape(int w, int h)
@@ -54,7 +56,7 @@ Vect * rayTracing(Ray * ray, int depth, float ior) {
 	for (itO = objs.begin(); itO != objs.end(); itO++) {
 		distNew = ((Obj*)*itO)->intersect(ray);				//Intersect
 
-		if (distNew > 1e-6 && distNew < dist) {
+		if (distNew > EPSILON && distNew < dist) {
 			dist = distNew;
 			closest = (Obj*)*itO;
 		}		
@@ -65,16 +67,37 @@ Vect * rayTracing(Ray * ray, int depth, float ior) {
 
 	std::list<Light*> lights = scene->getLights();
 	std::list<Light*>::iterator itL;
+	Vect* hit = ray->getHitPoint(dist);
+	Vect* color;
 	for (itL = lights.begin(); itL != lights.end(); itL++) {
-		//Vect * lVect = ((Light*)*itL)->getLVect(ray);
-		//if(lVect->normal > 0) {
-		//	Ray * newRay = new Ray(hit, lVect);
-		//	if(!point in shadow)
-		//		color += diffuse color + specular color;
+		Vect * lVect = ((Light*)*itL)->getLVect(hit);
+		Vect* normal = closest->getNormal(hit);
+		if(lVect->dotP(normal) > 0) {
+			Ray * newRay = new Ray(hit->add(lVect->multiply(EPSILON)), lVect);
+			if (!inShadow(newRay)) {
+				color = ((Light*)*itL)->getDiffuse(normal, closest->getMat()); //+diffuse
+			}
+		}
 	}
 
 
 	//return nullptr;
+}
+
+bool inShadow(Ray* ray) {
+	
+	std::list<Obj*> objs = scene->getObjects();
+	std::list<Obj*>::iterator itO;
+
+	float dist = 9999, hit=0;
+	for (itO = objs.begin(); itO != objs.end(); itO++) {
+		hit = ((Obj*)*itO)->intersect(ray);				//Intersect
+
+		if (hit!=0) {
+			return true;
+		}
+	}
+	return false;
 }
 
 

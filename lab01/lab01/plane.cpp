@@ -28,3 +28,8 @@ float Plane::intersect(Ray * ray)
 	float a = -(((ray->getO())->minus(_point1))->dotP(_n)) / (_n->dotP(ray->getD()));
 	return a;
 }
+
+Vect * Plane::getNormal(Vect * point)
+{
+	return _n;
+}

@@ -16,5 +16,6 @@ public:
 	//Returns 0.0f if doesn't intersect
 	//Returns 0.0f if origin is in surface
 	float intersect(Ray * ray);
+	Vect* getNormal(Vect* point);
 };
 

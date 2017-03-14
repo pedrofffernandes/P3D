@@ -23,3 +23,10 @@ Vect * Ray::getO()
 {
 	return _origin;
 }
+
+Vect * Ray::getHitPoint(float dist)
+{
+	Vect* hit = _direction->multiply(dist);
+	hit = hit->add(_origin);
+	return hit;
+}

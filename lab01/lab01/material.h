@@ -12,5 +12,9 @@ class Material
 public:
 	Material(Vect* rgb, float kd, float ks, float shine, float T, float refraction);
 	~Material();
+
+	Vect* getRGB();
+	float getKd();
+	float getKs();
 };
 

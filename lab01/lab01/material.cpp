@@ -22,3 +22,18 @@ Material::Material(Vect* rgb, float kd, float ks, float shine, float T, float re
 Material::~Material()
 {
 }
+
+Vect * Material::getRGB()
+{
+	return _rgb;
+}
+
+float Material::getKd()
+{
+	return _kd;
+}
+
+float Material::getKs()
+{
+	return _ks;
+}

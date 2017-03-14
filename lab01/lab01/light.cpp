@@ -23,3 +23,9 @@ Vect * Light::getLVect(Vect * hit)
 	lVect->normalize();
 	return lVect;
 }
+
+Vect * Light::getDiffuse(Vect * normal, Material * mat){
+
+	//Vect* result = mat->getRGB
+	return nullptr;
+}
