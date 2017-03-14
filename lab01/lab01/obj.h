@@ -13,5 +13,7 @@ public:
 
 	//Intersects the Obj with a Ray
 	virtual float intersect(Ray * ray);
+	virtual Vect* getNormal(Vect* point);
+	Material* getMat();
 };
 

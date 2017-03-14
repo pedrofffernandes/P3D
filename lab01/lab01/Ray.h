@@ -17,5 +17,6 @@ public:
 	Vect * getD();
 	//Returns _origin
 	Vect * getO();
+	Vect* getHitPoint(float dist);
 };
 
